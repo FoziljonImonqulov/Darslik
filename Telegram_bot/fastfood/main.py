@@ -1,5 +1,7 @@
 import logging
+import os
 
+print(os.getcwd())
 from aiogram import Bot, Dispatcher, types, executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
@@ -8,9 +10,9 @@ from aiogram.dispatcher.filters.state import StatesGroup, State
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from Telegram_bot.image_to_pdf.sql1 import Tbot
+from Telegram_bot.fastfood.sql1 import Tbot
 
-BOT_TOKEN = '6593693542:AAHZNVVPju5nesUbB6HnL0RJoflI-HKx5qM'
+BOT_TOKEN = '6651525694:AAGxPOfgDQ8QkHphOocqD7qHwYaCJXBk7S8'
 
 bot = Bot(BOT_TOKEN)
 dp = Dispatcher(bot, storage=MemoryStorage())
