@@ -1,0 +1,102 @@
+Imonqulov Foziljon
+
+--1-savol
+create table car(
+    id bigserial primary key ,
+    name text not null ,
+    brand text not null ,
+    price text not null ,
+    created_at date default current_timestamp
+);
+
+select * from car;
+insert into car( name, brand, price)
+select md5(generate_series::text),md5(generate_series::text),md5(generate_series::text)
+from generate_series(1,400000);
+
+--2-savol
+--varchar ---odatda varchar(255) holatida va 255 dan kam malumot bolsa ham shuncha joyni egallaydi
+--real ---raqamlar bilan ishlashda real tipidan foydalaniladi va biz dasturimizda pul miqdorini ifodalash uchun foydalandik e.x 23,33
+--integer ---aniq raqamlar bilan ishlashda foydalaniladi
+--text ---cheksiz matnlar yozishda foydalaniladi masal comentariya uchun
+--serial- ---table ga id berish uchun qollaniladi
+--bigserial ---- table ga id berish uchun qollaniladi va millard sonlargacha id raqam bera oladi serila bu miqdor kamroq
+--timestamp ---- vaqtni yani biron bir jarayon sodir bolganda vaqtni millisecondlarigacha yozib oladi
+--char ---ham string kabi qiymatlar uchun va unga 20 qiymat bersak malumot 5 ga teng bolsa char tipi hotiradan 15 ni ham qoshib olib ortqicha joy egallaydi
+--bool ---fals va ture qiymat berish uchun ishlatilinadi
+--float ----bu ham raqamlar uchun ishlatilinadi masalan 24.5
+--
+
+--3-savol
+-- * * * * * PGPASSWORD=1 pg_dump -F t -U foziljon -h localhost -p  5432 foziljon > foziljon_backup.tar
+create table car_detail(
+    id serial primary key ,
+    car_id integer references car(id),
+    detail text
+);
+insert into car_detail(car_id,detail)
+values (1,'Qolib ketgan avtomabil'),
+       (33,'Ogirlab ketilgan avtomabil'),
+       (12,'Arzon avtomabil'),
+       (45,'Yangi avtomail haloati ideal'),
+       (90,'Samidullo faqat ishga borib kelgan avtomabil');
+
+select * from car_detail;
+
+
+--4-savol
+
+create or replace function from_price_to_price(from_p varchar,to_price varchar)
+returns setof car
+language plpgsql
+as
+$$
+    begin
+        return query select * from car where price between from_p and to_price;
+
+end;
+$$;
+
+select from_price_to_price('1','4');
+
+
+--5-savol
+create table users(
+    id serial primary key ,
+    fullname varchar(100),
+    username varchar(100),
+    passwords varchar(100),
+    join_at date default current_date
+);
+create table deleted_users(
+    id serial primary key ,
+    fullname varchar(100),
+    username varchar(100),
+    passwords varchar(100),
+    join_at date default current_date
+);
+
+create or replace function before_delete_save_to_deleted_users()
+returns trigger
+as
+$$
+    begin
+    insert into deleted_users(id,fullname,username,passwords,join_at)
+        values (old.id,old.fullname,old.username,old.passwords,old.join_at);
+    return old;
+end;
+
+$$ language plpgsql;
+
+create or replace trigger save_before_delete
+    before delete on users
+    for each row
+    execute function before_delete_save_to_deleted_users();
+
+insert into users (fullname, username, passwords)
+values ('Foziljon Imonqulov','fozil@dev','12345');
+
+delete from users where id=1;
+
+select * from deleted_users;
+select * from users;
