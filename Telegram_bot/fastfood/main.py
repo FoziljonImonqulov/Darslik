@@ -1,7 +1,6 @@
 import logging
 import os
 
-print(os.getcwd())
 from aiogram import Bot, Dispatcher, types, executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
@@ -16,7 +15,7 @@ BOT_TOKEN = '6651525694:AAGxPOfgDQ8QkHphOocqD7qHwYaCJXBk7S8'
 
 bot = Bot(BOT_TOKEN)
 dp = Dispatcher(bot, storage=MemoryStorage())
-logger = logging.getLogger(__name__)
+
 
 
 class Register(StatesGroup):
@@ -36,7 +35,6 @@ class inside_o(StatesGroup):
 
 @dp.message_handler(commands="start")
 async def register_handler(message: types.Message):
-    a = message['from']['id']
     data = {
         "user_id": message["from"]['id'],
         'is_bot': message['from']['is_bot'],
@@ -169,7 +167,7 @@ async def back(message: types.Message):
 
 @dp.message_handler(lambda msg: msg.text in ("📞 Biz bilan aloqa"))
 async def aloqa(message: types.Message):
-    await message.bot.send_contact(message.chat.id, "+99893iin4113", "Imonqulov", "Foziljon")
+    await message.bot.send_contact(message.chat.id, "+998931174113", "Imonqulov", "Foziljon")
 
 
 @dp.message_handler(lambda msg: msg.text in ("🗒 Ma'lumot"))
