@@ -41,9 +41,6 @@ async def start_(message: types.Message):
     await message.bot.send_photo(chat_id=message.from_user.id,
                                  photo=f"https://namozvaqtlari.com/{data[0].get('image')}", reply_markup=markup)
 
-    im = data[1]['image']
-    # await message.bot.send_photo(message.from_user.id, f"https://namozvaqtlari.com/{data[0].get('image')}")
-
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)

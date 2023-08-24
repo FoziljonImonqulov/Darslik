@@ -1,21 +1,16 @@
-import logging
-import os
-
 from aiogram import Bot, Dispatcher, types, executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
-from aiogram.dispatcher.filters import Text, Filter, CommandStart
 from aiogram.dispatcher.filters.state import StatesGroup, State
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from Telegram_bot.fastfood.sql1 import Tbot
+from Street22bot.fastfood.sql1 import Tbot
 
 BOT_TOKEN = '6651525694:AAGxPOfgDQ8QkHphOocqD7qHwYaCJXBk7S8'
 
 bot = Bot(BOT_TOKEN)
 dp = Dispatcher(bot, storage=MemoryStorage())
-
 
 
 class Register(StatesGroup):
