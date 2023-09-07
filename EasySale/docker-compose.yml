@@ -1,0 +1,37 @@
+version: "3.11"
+
+services:
+  bot:
+    build: .
+    restart: always
+    working_dir: /bot
+    container_name: easy_sale
+    environment:
+      TOKEN: 6415492254:AAGPJ2zP-3ciAG3cychLkN_jRHO_mVLKuo8
+      DATABASE : postgres
+      DB_USER : postgres
+      DB_HOST : easy_bot_con
+      DB_PORT : 5432
+      DB_PASSWORD: 1
+    command: python3 tasks.py base.py
+
+
+  pg:
+    image: postgres:15.3-alpine
+    restart: always
+    container_name: easy_bot_con
+    environment:
+      - POSTGRES_PASSWORD=1
+    volumes:
+      - pg_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+
+volumes:
+  pg_data:
+
+
+
+
+
+

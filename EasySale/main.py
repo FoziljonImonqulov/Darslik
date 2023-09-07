@@ -5,12 +5,15 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import StatesGroup, State
 from EasySale.base import DB
-
+from dotenv import load_dotenv
+load_dotenv()
+import logging
 BOT_TOKEN = "6415492254:AAGPJ2zP-3ciAG3cychLkN_jRHO_mVLKuo8"
 
 bot = Bot(BOT_TOKEN)
 
 dp = Dispatcher(bot, storage=MemoryStorage())
+logging.basicConfig(level=logging.INFO)
 
 picture = []
 

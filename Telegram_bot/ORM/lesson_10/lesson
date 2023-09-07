@@ -1,0 +1,25 @@
+1)
+    1) https://leetcode.com/problems/determine-if-two-events-have-conflict/
+
+MAVZU : sqlalchemy ORM
+
+    create engine or session
+    CRUD documentation
+    faker
+
+amaliy qilinadigan ish :
+
+    User
+    Post       TABLES   yaratib bir biriga relationship qilamiz va malumotlar ustida CRUD ni UI yasimiz (terminalda)
+    Comment
+
+Uyga vazifa:
+
+    1) Kutibxona Projectini sqlalchemy da telegram bot yasimiz !
+
+
+
+
+
+
+

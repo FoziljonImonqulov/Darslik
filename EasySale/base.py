@@ -1,13 +1,13 @@
 from dataclasses import dataclass
-
+import os
 import psycopg2
 
 con = psycopg2.connect(
-    database='postgres',
-    user='postgres',
-    host='localhost',
-    port=5432,
-    password='1221'
+    database=os.getenv("DATABASE"),
+    user=os.getenv("DB_USER"),
+    host=os.getenv("DB_HOST"),
+    port=os.getenv("DB_PORT"),
+    password=os.getenv("DB_PASSWORD")
 )
 cur = con.cursor()
 
@@ -42,7 +42,7 @@ class DB:
             return True
         return False
 
-    def update_data(self, phone_number,user_id):
+    def update_data(self, phone_number, user_id):
         query = """
             update bot_user set phone_number=%s where user_id = %s
         """
