@@ -2,7 +2,7 @@ version: "3.11"
 
 services:
   bot:
-    build: ../2_vazifatelegram_bot
+    build: ../vazifa2_telegram_bot
     restart: always
     working_dir: /apps
     container_name: my_con

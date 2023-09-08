@@ -2,10 +2,9 @@ from aiogram import Bot, Dispatcher, executor, types
 from aiogram.dispatcher.filters import Text
 from aiogram.types import InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup
 import logging
-# from Takrorlash.2_vazifatelegram_bot.database_ import Exercise, session, User
-# from Takrorlash.telegram_bot.database_ import Exercise
-
 from dotenv import load_dotenv
+
+from Takrorlash.vazifa5.db_ import User, session, Exercise
 
 load_dotenv()
 

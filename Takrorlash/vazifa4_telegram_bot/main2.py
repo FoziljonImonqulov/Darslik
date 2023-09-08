@@ -2,11 +2,8 @@ from aiogram import Bot, Dispatcher, executor, types
 from aiogram.dispatcher.filters import Text
 from aiogram.types import InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup
 import logging
-from Takrorlash.telegram_bot.database_ import Exercise, session, User
-from Takrorlash.telegram_bot.database_ import Exercise
-from dotenv import load_dotenv
 
-load_dotenv()
+from Takrorlash.vazifa3_telegram_bot.db import session, User, Exercise
 
 Bot_Token = "6657313336:AAFDc1-6r59unMTv3rwI7VB__uH3cK-LqO8"
 bot = Bot(Bot_Token)
@@ -26,6 +23,7 @@ async def start_(message: types.Message):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     markup.add(KeyboardButton("Filiallar📍"), KeyboardButton('Start train🏋'))
     markup.add(KeyboardButton("Admin☎"), KeyboardButton('Nearest location📍', request_location=True))
+    markup.add(KeyboardButton("NewsPost"))
     await message.answer("FitnessHall ga xush kelibsiz", reply_markup=markup)
 
 
@@ -113,6 +111,12 @@ async def back(message: types.Message):
     markup.add(KeyboardButton("Woman👩"), KeyboardButton("Man👨"))
     markup.add("🔙back")
     await message.answer('Kerakli tugmani tanlang', reply_markup=markup)
+
+
+@dp.message_handler(Text("NewsPost"))
+async def news_(message: types.Message):
+    await message.answer(
+        "Ustoz siz bergan saytdan hech narsa olib bolmadi iltimos balim past chiqsa yordam qilib yuboring docker ham ishlamayapti ")
 
 
 if __name__ == '__main__':

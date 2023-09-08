@@ -1,7 +1,7 @@
 FROM python:3.11-alpine
 
 WORKDIR apps/
-COPY  ../2_vazifatelegram_bot .
+COPY  . .
 RUN pip install -r req.txt
 CMD python3 main.py
 
