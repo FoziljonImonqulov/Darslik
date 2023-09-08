@@ -3,7 +3,7 @@ from sqlalchemy import create_engine, String, Column, Integer, Text, ForeignKey
 from sqlalchemy.orm import declarative_base, sessionmaker, relationship
 
 faker = Faker()
-engine = create_engine("postgresql+psycopg2://postgres:1@pg/postgres")
+engine = create_engine("postgresql://postgres:1@localhost:5432/postgres")
 Session = sessionmaker(engine)
 session = Session()
 
